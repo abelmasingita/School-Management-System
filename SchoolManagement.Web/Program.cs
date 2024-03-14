@@ -1,19 +1,9 @@
-using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-//Add DbContext
-builder.Services.AddDbContext<DataAccessLayer.DataLayer>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataAccessLayer")));
-
-builder.Services.AddIdentityCore<User>().AddRoles<IdentityRole>().AddTokenProvider<DataProtectorTokenProvider<User>>("SchoolMgt").AddEntityFrameworkStores<DataAccessLayer.DataLayer>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 
@@ -30,7 +20,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
