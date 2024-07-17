@@ -12,29 +12,11 @@ namespace DataAccessLayer.Models
     [Table("Student")]
     public class Student
     {
-        [Key]
+        [Key] //FK to User
         public int Id { get; set; }
 
-        [DisplayName("Student Name")]
-        public string Name { get; set; }
-
-        [DisplayName("Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
-
-        [DisplayName("Gender")]
-        public String Gender { get; set; }
-
-        [DisplayName("Address")]
-        public String Address { get; set; }
-
-        [DisplayName("Phone Number")]
-        public String PhoneNumber { get; set; }
-
-        [DisplayName("Email")]
-        public String Email { get; set; }
-
-        [DisplayName("Phone")]
-        public String Mobile { get; set; }
+        public string UserID { get; set; }  // Foreign Key to ApplicationUser
+        public User User { get; set; }
 
         [DisplayName("Admission Date")]
         public DateTime AdmissionDate { get; set; }
