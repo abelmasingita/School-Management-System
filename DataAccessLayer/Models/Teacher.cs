@@ -15,8 +15,10 @@ namespace DataAccessLayer.Models
         [Key] //FK to User
         public int Id { get; set; }
 
-
         public string UserID { get; set; }  // Foreign Key to ApplicationUser
         public User User { get; set; }
+        public string SubjectID { get; set; }
+        public Subject Subject { get; set; }
+        public ICollection<Class> Classes { get; set; }
     }
 }

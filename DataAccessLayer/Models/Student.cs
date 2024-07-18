@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Models
 {
@@ -21,5 +16,10 @@ namespace DataAccessLayer.Models
         [DisplayName("Admission Date")]
         public DateTime AdmissionDate { get; set; }
 
+        public string ClassID { get; set; }
+        public Class Class { get; set; }
+        public ICollection<Grade> Grades { get; set; }
+        public ICollection<Attendance> Attendances { get; set; }
+        public ICollection<Fee> Fees { get; set; }
     }
 }
