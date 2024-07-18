@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataLayer))]
-    [Migration("20240717232554_user-student-migrations")]
-    partial class userstudentmigrations
+    [Migration("20240718221532_initialmigration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,106 @@ namespace DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DataAccessLayer.Models.Attendance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Attendances");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Class", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClassName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Fee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Fees");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Grade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("GradeValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Grades");
+                });
+
             modelBuilder.Entity("DataAccessLayer.Models.Parent", b =>
                 {
                     b.Property<int>("Id")
@@ -33,16 +133,16 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("UserID")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Parent");
+                    b.ToTable("Parents");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Student", b =>
@@ -56,21 +156,54 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("AdmissionDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserID")
+                    b.Property<int?>("ParentId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassId");
+
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("ParentId1");
 
-                    b.ToTable("Student");
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1")
+                        .IsUnique()
+                        .HasFilter("[UserId1] IS NOT NULL");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("SubjectName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Teacher", b =>
@@ -81,16 +214,21 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("UserID")
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID")
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.User", b =>
@@ -202,6 +340,32 @@ namespace DataAccessLayer.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7502cff0-5f9d-417a-838b-d34dbd538750",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "c01fc8a9-eccb-42a3-80b6-558eb23447f2",
+                            Name = "Parent",
+                            NormalizedName = "PARENT"
+                        },
+                        new
+                        {
+                            Id = "72bfb235-b250-4f98-b1ce-4b9f7a5e53f5",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "08cd301d-4f3d-425b-b58e-b8afcbfd482e",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -310,11 +474,63 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DataAccessLayer.Models.Attendance", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Student", "Student")
+                        .WithMany("Attendances")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Class", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Teacher", "Teacher")
+                        .WithMany("Classes")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Fee", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Student", "Student")
+                        .WithMany("Fees")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Grade", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Student", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.Subject", "Subject")
+                        .WithMany("Grades")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("DataAccessLayer.Models.Parent", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.User", "User")
                         .WithOne("Parent")
-                        .HasForeignKey("DataAccessLayer.Models.Parent", "UserID")
+                        .HasForeignKey("DataAccessLayer.Models.Parent", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -323,26 +539,53 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("DataAccessLayer.Models.Student", b =>
                 {
+                    b.HasOne("DataAccessLayer.Models.Class", "Class")
+                        .WithMany("Students")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.Parent", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("DataAccessLayer.Models.Parent", null)
                         .WithMany("Children")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ParentId1");
 
                     b.HasOne("DataAccessLayer.Models.User", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("DataAccessLayer.Models.Student", "UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.User", null)
+                        .WithOne("Student")
+                        .HasForeignKey("DataAccessLayer.Models.Student", "UserId1");
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Parent");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Teacher", b =>
                 {
-                    b.HasOne("DataAccessLayer.Models.User", "User")
-                        .WithOne("Teacher")
-                        .HasForeignKey("DataAccessLayer.Models.Teacher", "UserID")
+                    b.HasOne("DataAccessLayer.Models.Subject", "Subject")
+                        .WithMany("Teachers")
+                        .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.User", "User")
+                        .WithOne("Teacher")
+                        .HasForeignKey("DataAccessLayer.Models.Teacher", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
 
                     b.Navigation("User");
                 });
@@ -398,9 +641,35 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DataAccessLayer.Models.Class", b =>
+                {
+                    b.Navigation("Students");
+                });
+
             modelBuilder.Entity("DataAccessLayer.Models.Parent", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Student", b =>
+                {
+                    b.Navigation("Attendances");
+
+                    b.Navigation("Fees");
+
+                    b.Navigation("Grades");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Subject", b =>
+                {
+                    b.Navigation("Grades");
+
+                    b.Navigation("Teachers");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.Teacher", b =>
+                {
+                    b.Navigation("Classes");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.User", b =>

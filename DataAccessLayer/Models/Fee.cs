@@ -1,12 +1,26 @@
-﻿namespace DataAccessLayer.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccessLayer.Models
 {
+    [Table("Fees")]
     public class Fee
     {
-        public int ID { get; set; }
-        public int StudentID { get; set; }
+        [Key]
+        public int Id { get; set; }
+
+        [DisplayName("Student Id")]
+        public int StudentId { get; set; }
         public Student Student { get; set; }
+
+        [DisplayName("Amount")]
         public decimal Amount { get; set; }
+
+        [DisplayName("Fee Due Date")]
         public DateTime DueDate { get; set; }
+
+        [DisplayName("Fee Payment Date")]
         public DateTime? PaidDate { get; set; }
     }
 }

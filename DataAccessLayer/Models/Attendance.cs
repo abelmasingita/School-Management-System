@@ -1,13 +1,23 @@
-﻿namespace DataAccessLayer.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccessLayer.Models
 {
+    [Table("Attendances")]
     public class Attendance
     {
-        public int ID { get; set; }
-        public int StudentID { get; set; }
-        public Student Student { get; set; }
-        public DateTime Date { get; set; }
-        public string Status { get; set; }
-    }
+        [Key]
+        public int Id { get; set; }
 
+        [DisplayName("Student Id")]
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
+        [DisplayName("Attendance Date")]
+        public DateTime Date { get; set; }
+        [DisplayName("Attendance Status")]
+        public AttendanceType Status { get; set; }
+    }
+    public enum AttendanceType { Present, Absent}
 
 }

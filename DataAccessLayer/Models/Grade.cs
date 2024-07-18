@@ -1,12 +1,24 @@
-﻿namespace DataAccessLayer.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccessLayer.Models
 {
+    [Table("Grades")]
     public class Grade
     {
-        public int ID { get; set; }
-        public int StudentID { get; set; }
+        [Key]
+        public int Id { get; set; }
+
+        [DisplayName("Student Id")]
+        public int StudentId { get; set; }
         public Student Student { get; set; }
-        public int SubjectID { get; set; }
+
+        [DisplayName("Subject Id")]
+        public int SubjectId { get; set; }
         public Subject Subject { get; set; }
+
+        [DisplayName("Grade Value")]
         public string GradeValue { get; set; }
     }
 }

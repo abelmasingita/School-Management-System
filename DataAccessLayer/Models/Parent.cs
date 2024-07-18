@@ -1,17 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models
 {
-    [Table("Parent")]
+    [Table("Parents")]
     public class Parent
     {
         [Key] //FK to User
         public int Id { get; set; }
 
-        public string UserID { get; set; }  // Foreign Key to ApplicationUser
+
+        [Required]
+        [ForeignKey("AspNetUsers")]
+        public string UserId { get; set; }  // Foreign Key to ApplicationUser
         public User User { get; set; }
 
+
+        //navigation properties
         public ICollection<Student> Children { get; set; }
     }
 }

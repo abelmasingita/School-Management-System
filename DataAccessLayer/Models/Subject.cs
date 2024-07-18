@@ -1,9 +1,17 @@
-﻿namespace DataAccessLayer.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccessLayer.Models
 {
+    [Table("Subjects")]
     public class Subject
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
+
+        [DisplayName("Subject Name")]
         public string SubjectName { get; set; }
+
+        //navigation properties
         public ICollection<Teacher> Teachers { get; set; }
         public ICollection<Grade> Grades { get; set; }
     }
