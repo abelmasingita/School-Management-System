@@ -25,9 +25,14 @@ namespace DataAccessLayer.Models
         [DisplayName("Address")]
         public String Address { get; set; }
 
+        [DisplayName("Active Status")]
+        public ActiveStatus Active { get; set; }
+
         //mavigation properties
         public Student Student { get; set; }
         public Teacher Teacher { get; set; }
         public Parent Parent { get; set; }
     }
+
+    public enum ActiveStatus { NotActive, Active }
 }
