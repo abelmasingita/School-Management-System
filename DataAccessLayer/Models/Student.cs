@@ -22,7 +22,7 @@ namespace DataAccessLayer.Models
         [DisplayName("Admission Date")]
         public DateTime AdmissionDate { get; set; }
 
-        [DisplayName("Class Id")]
+        [DisplayName("Class")]
         public int ClassId { get; set; }
         public Class Class { get; set; }
 

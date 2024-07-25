@@ -45,16 +45,23 @@
       <span class="menu-header-text">Apps &amp; Pages</span>
     </li> *@
     <!-- Pages -->
-        <li class='menu-item@(currentPage.StartsWith("/UserManagement/Teacher") ? " active open" : "")'>
+    <li class='menu-item@(currentPage.StartsWith("/UserManagement/Index") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div>Admin</div>
+        <div>Administration</div>
       </a>
       <ul class="menu-sub">
-        <li class='menu-item@(currentPage == "/UserManagement/Teacher" ? " active" : "")'>
-                    <a asp-controller="UserManagement" asp-action="Teacher" class="menu-link">
+        <li class='menu-item@(currentPage == "/UserManagement/Index" ? " active" : "")'>
+          <a asp-controller="UserManagement" asp-action="Index" class="menu-link">
             <div>User Management</div>
           </a>
+        </li>
+      </ul>
+      <ul class="menu-sub">
+        <li class='menu-item@(currentPage == "/SchoolManagement/Class" ? " active" : "")'>
+            <a asp-controller="SchoolManagement" asp-action="Class" class="menu-link">
+                <div>Class Management</div>
+            </a>
         </li>
       </ul>
     </li>

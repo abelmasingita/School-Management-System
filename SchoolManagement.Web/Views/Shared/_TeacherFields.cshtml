@@ -1,0 +1,11 @@
+@model AspnetCoreMvcFull.Models.AuthViewModel.CompositeViewModel
+<div class="mb-3 col-md-6">
+    <label asp-for="TeacherVM.Subject" class="form-label">Subject</label>
+    <select asp-for="TeacherVM.Subject" class="select2 form-select">
+        <option value="maths">Maths</option>
+        <option value="physics">Physics</option>
+    </select>
+    <span asp-validation-for="TeacherVM.Subject" class="text-danger"></span>
+</div>
+
+

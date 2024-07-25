@@ -1,0 +1,7 @@
+@model AspnetCoreMvcFull.Models.AuthViewModel.StudentViewModel
+
+<div class="mb-3 col-md-6">
+    <label asp-for="AdmissionDate" class="form-label">Admission Date</label>
+    <input asp-for="AdmissionDate" type="date" class="form-control" id="dateofbirth" name="AdmissionDate" />
+    <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+</div>

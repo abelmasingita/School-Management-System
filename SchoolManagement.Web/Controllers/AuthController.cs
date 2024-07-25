@@ -19,11 +19,9 @@ public class AuthController : Controller
   public IActionResult LoginBasic() => View();
   public IActionResult RegisterBasic() => View();
 
-  [HttpPost]
-  public async Task<IActionResult> Register(RegisterViewModel model)
+  public async Task<User> Register(RegisterViewModel model)
   {
-
-    if (ModelState.IsValid)
+    try
     {
       User user = new User()
       {
@@ -41,20 +39,18 @@ public class AuthController : Controller
 
       if (result.Succeeded)
       {
-        await userManager.AddToRoleAsync(user, "Student");
-        return RedirectToAction("Index", "Dashboards");
+        return user;
       }
-
-      foreach (var error in result.Errors)
+      else
       {
-        ModelState.AddModelError("", error.Description);
+        return null;
       }
     }
-    else
+    catch (Exception ex)
     {
-      return BadRequest(ModelState);
+      return null;
     }
-    return View();
+
   }
 
   [HttpPost]
@@ -82,15 +78,4 @@ public class AuthController : Controller
     return RedirectToAction("Index", "Home");
   }
 
-
-  private void CreateStudent(string userId)
-  {
-    if (userId != null)
-    {
-      Student student = new Student()
-      {
-        UserId = userId
-      };
-    }
-  }
 }
