@@ -1,5 +1,7 @@
+using DataAccessLayer.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AspnetCoreMvcFull.Models;
 
@@ -71,15 +73,22 @@ public class AuthViewModel
 
   }
 
-  public class ParentViewModel 
+  public class ParentViewModel
   {
 
   }
 
-  public class StudentViewModel 
+  public class StudentViewModel
   {
     [DisplayName("Admission Date")]
     public DateTime AdmissionDate { get; set; }
+
+    [DisplayName("Parent")]
+    public string Parent { get; set; }
+
+    [DisplayName("Class ")]
+    public string Class { get; set; }
+
   }
 
 

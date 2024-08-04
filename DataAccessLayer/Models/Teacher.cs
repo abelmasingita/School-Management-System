@@ -22,11 +22,9 @@ namespace DataAccessLayer.Models
         public string UserId { get; set; }  // Foreign Key to ApplicationUser
         public User User { get; set; }
 
-        [DisplayName("Subject Id")]
-        public int SubjectId { get; set; }
 
         //navigation properties
-        public Subject Subject { get; set; }
+        public ICollection<Subject> Subject { get; set; }
         public ICollection<Class> Classes { get; set; }
     }
 }

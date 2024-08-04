@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataLayer))]
-    [Migration("20240718221532_initialmigration")]
-    partial class initialmigration
+    [Migration("20240803223450_initMigration")]
+    partial class initMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,14 +162,8 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ParentId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -178,13 +172,8 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("ParentId1");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1")
-                        .IsUnique()
-                        .HasFilter("[UserId1] IS NOT NULL");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -214,21 +203,39 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubjectId");
-
                     b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.TeacherSubject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherSubjects");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.User", b =>
@@ -237,6 +244,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Active")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
@@ -344,25 +354,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7502cff0-5f9d-417a-838b-d34dbd538750",
+                            Id = "56089858-8698-40fc-8c6e-6cb9c5deb233",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "c01fc8a9-eccb-42a3-80b6-558eb23447f2",
+                            Id = "29a9f8b4-c1f0-451a-9840-a5e1f863f864",
                             Name = "Parent",
                             NormalizedName = "PARENT"
                         },
                         new
                         {
-                            Id = "72bfb235-b250-4f98-b1ce-4b9f7a5e53f5",
+                            Id = "a146b88d-08e8-4cb3-bf28-8201b3cb407a",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "08cd301d-4f3d-425b-b58e-b8afcbfd482e",
+                            Id = "a9574df6-2ffb-43ce-aa52-d88df3079426",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -542,27 +552,18 @@ namespace DataAccessLayer.Migrations
                     b.HasOne("DataAccessLayer.Models.Class", "Class")
                         .WithMany("Students")
                         .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccessLayer.Models.Parent", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DataAccessLayer.Models.Parent", null)
                         .WithMany("Children")
-                        .HasForeignKey("ParentId1");
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("DataAccessLayer.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DataAccessLayer.Models.User", null)
                         .WithOne("Student")
-                        .HasForeignKey("DataAccessLayer.Models.Student", "UserId1");
+                        .HasForeignKey("DataAccessLayer.Models.Student", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Class");
 
@@ -573,21 +574,32 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("DataAccessLayer.Models.Teacher", b =>
                 {
-                    b.HasOne("DataAccessLayer.Models.Subject", "Subject")
-                        .WithMany("Teachers")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DataAccessLayer.Models.User", "User")
                         .WithOne("Teacher")
                         .HasForeignKey("DataAccessLayer.Models.Teacher", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Models.TeacherSubject", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Subject");
 
-                    b.Navigation("User");
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -641,6 +653,7 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
+
             modelBuilder.Entity("DataAccessLayer.Models.Class", b =>
                 {
                     b.Navigation("Students");
@@ -663,8 +676,6 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("DataAccessLayer.Models.Subject", b =>
                 {
                     b.Navigation("Grades");
-
-                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Teacher", b =>

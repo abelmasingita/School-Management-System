@@ -17,25 +17,6 @@ namespace DataAccessLayer
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-
-            modelBuilder.Entity<Student>()
-                        .HasOne(s => s.User)
-                        .WithMany()
-                        .HasForeignKey(s => s.UserId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Student>()
-                        .HasOne(s => s.Class)
-                        .WithMany(c => c.Students)
-                        .HasForeignKey(s => s.ClassId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Student>()
-                        .HasOne(s => s.Parent)
-                        .WithMany()
-                        .HasForeignKey(s => s.ParentId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
@@ -45,5 +26,6 @@ namespace DataAccessLayer
         public DbSet<Fee> Fees { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<TeacherSubject> TeacherSubjects { get; set; }
     }
 }

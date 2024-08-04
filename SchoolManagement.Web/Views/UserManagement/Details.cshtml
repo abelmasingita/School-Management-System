@@ -1,5 +1,114 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model AspnetCoreMvcFull.Models.AuthViewModel.CompositeViewModel
+
 @{
+    ViewData["Title"] = "User Management  - Details User";
+}
+
+@section PageScripts {
+    <script src="~/js/ui-toasts.js"></script>
+}
+
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <span><span class="text-muted fw-light">User Management /</span> Edit User</span>
+        <a asp-controller="UserManagement" asp-action="Index" class="btn btn-primary me-2">Back </a>
+    </div>
+</h4>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <h5 class="card-header">Edit User Details</h5>
+            <!-- Account -->
+            <div class="card-body">
+                <form id="userAccount" method="POST" action="~/UserManagement/Details">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.FirstName" class="form-label"></label>
+                            <input asp-for="RegisterVM.FirstName" class="form-control" type="text" />
+                            <span asp-validation-for="RegisterVM.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.LastName" class="form-label"></label>
+                            <input asp-for="RegisterVM.LastName" class="form-control" type="text" />
+                            <span asp-validation-for="RegisterVM.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.Email" class="form-label"></label>
+                            <input disabled asp-for='RegisterVM.Email' class="form-control" type="email" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.Phone" class="form-label" for="phone">Phone Number</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text">ZA (+27)</span>
+                                <input asp-for="RegisterVM.Phone" type="tel" class="form-control" />
+                            </div><span asp-validation-for="RegisterVM.Phone" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.Address" class="form-label"></label>
+                            <input asp-for="RegisterVM.Address" type="text" class="form-control" />
+                            <span asp-validation-for="RegisterVM.Address" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.DateOfBirth" class="form-label"></label>
+                            <input disabled asp-for="RegisterVM.DateOfBirth" type="date" min="2000-01-01" value="2000-01-01" class="form-control" />
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.Gender" class="form-label"></label>
+                            <select asp-for="RegisterVM.Gender" class="select2 form-select">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span asp-validation-for="RegisterVM.Gender" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="RegisterVM.Role" class="form-label"></label>
+                            @Html.DropDownListFor(
+                                     model => model.RegisterVM.Role,
+                                     (IEnumerable<SelectListItem>)ViewBag.Roles,
+                                     "--No Selection--",
+                                     new { @class = "form-control" }
+                                     )
+                            <span asp-validation-for="RegisterVM.Role" class="text-danger"></span>
+                        </div>
+                        <div id="roleSpecificFields"></div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary me-2">Save</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /Account -->
+        </div>
+    </div>
+</div>
+
+
+@if (TempData["Success"] != null && (bool)TempData["Success"] == true)
+{
+    <div class="bs-toast toast fade show bg-success" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed; top: 50%; left: 50%; transform:  translate(-50%, -50%); z-index: 1050;">
+        <div class="toast-header">
+            <i class='bx bx-bell me-2'></i>
+            <div class="me-auto fw-medium">Add User</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            @TempData["Message"]
+        </div>
+    </div>
+}
+else if (TempData["Success"] != null && (bool)TempData["Success"] == false)
+{
+    <div class="bs-toast toast fade show bg-danger" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed; top: 50%; left: 50%; transform:  translate(-50%, -50%); z-index: 1050;">
+        <div class="toast-header">
+            <i class='bx bx-bell me-2'></i>
+            <div class="me-auto fw-medium">Add User</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            @TempData["Message"]
+        </div>
+    </div>
 }

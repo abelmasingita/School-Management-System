@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class initMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +37,7 @@ namespace DataAccessLayer.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -201,8 +202,7 @@ namespace DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -211,12 +211,6 @@ namespace DataAccessLayer.Migrations
                         name: "FK_Teachers_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Teachers_Subjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -242,6 +236,32 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TeacherSubjects",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeacherId = table.Column<int>(type: "int", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeacherSubjects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TeacherSubjects_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TeacherSubjects_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
@@ -250,9 +270,7 @@ namespace DataAccessLayer.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: true),
                     AdmissionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClassId = table.Column<int>(type: "int", nullable: false),
-                    ParentId1 = table.Column<int>(type: "int", nullable: true),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ClassId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -262,27 +280,16 @@ namespace DataAccessLayer.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Students_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Students_Classes_ClassId",
                         column: x => x.ClassId,
                         principalTable: "Classes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Students_Parents_ParentId",
                         column: x => x.ParentId,
-                        principalTable: "Parents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Students_Parents_ParentId1",
-                        column: x => x.ParentId1,
                         principalTable: "Parents",
                         principalColumn: "Id");
                 });
@@ -362,10 +369,10 @@ namespace DataAccessLayer.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "08cd301d-4f3d-425b-b58e-b8afcbfd482e", null, "Admin", "ADMIN" },
-                    { "72bfb235-b250-4f98-b1ce-4b9f7a5e53f5", null, "Teacher", "TEACHER" },
-                    { "7502cff0-5f9d-417a-838b-d34dbd538750", null, "Student", "STUDENT" },
-                    { "c01fc8a9-eccb-42a3-80b6-558eb23447f2", null, "Parent", "PARENT" }
+                    { "29a9f8b4-c1f0-451a-9840-a5e1f863f864", null, "Parent", "PARENT" },
+                    { "56089858-8698-40fc-8c6e-6cb9c5deb233", null, "Student", "STUDENT" },
+                    { "a146b88d-08e8-4cb3-bf28-8201b3cb407a", null, "Teacher", "TEACHER" },
+                    { "a9574df6-2ffb-43ce-aa52-d88df3079426", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -449,32 +456,26 @@ namespace DataAccessLayer.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_ParentId1",
-                table: "Students",
-                column: "ParentId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Students_UserId",
                 table: "Students",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_UserId1",
-                table: "Students",
-                column: "UserId1",
-                unique: true,
-                filter: "[UserId1] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_SubjectId",
-                table: "Teachers",
-                column: "SubjectId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_UserId",
                 table: "Teachers",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherSubjects_SubjectId",
+                table: "TeacherSubjects",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherSubjects_TeacherId",
+                table: "TeacherSubjects",
+                column: "TeacherId");
         }
 
         /// <inheritdoc />
@@ -505,10 +506,16 @@ namespace DataAccessLayer.Migrations
                 name: "Grades");
 
             migrationBuilder.DropTable(
+                name: "TeacherSubjects");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "Classes");
@@ -521,9 +528,6 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Subjects");
         }
     }
 }

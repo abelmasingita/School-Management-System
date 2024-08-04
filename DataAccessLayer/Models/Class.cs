@@ -12,6 +12,7 @@ namespace DataAccessLayer.Models
 
         [DisplayName("Class Name")]
         public string ClassName { get; set; }
+
         [DisplayName("Teacher Id")]
         public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }

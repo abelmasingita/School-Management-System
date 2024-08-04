@@ -1,7 +1,29 @@
-@model AspnetCoreMvcFull.Models.AuthViewModel.StudentViewModel
+@model AspnetCoreMvcFull.Models.AuthViewModel.CompositeViewModel
 
 <div class="mb-3 col-md-6">
-    <label asp-for="AdmissionDate" class="form-label">Admission Date</label>
-    <input asp-for="AdmissionDate" type="date" class="form-control" id="dateofbirth" name="AdmissionDate" />
-    <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+    <label asp-for="StudentVM.AdmissionDate" class="form-label"></label>
+    <input asp-for="StudentVM.AdmissionDate" type="date" min="2000-01-01" value="2000-01-01" class="form-control" />
+    <span asp-validation-for="StudentVM.AdmissionDate" class="text-danger"></span>
+</div>
+
+<div class="mb-3 col-md-6">
+    <label asp-for="StudentVM.Class" class="form-label"></label>
+    @Html.DropDownListFor(
+            model => model.StudentVM.Class,
+            (IEnumerable<SelectListItem>)ViewBag.Classes,
+            "--No Selection--",
+            new { @class = "form-control" }
+            )
+    <span asp-validation-for="StudentVM.Class" class="text-danger"></span>
+</div>
+
+<div class="mb-3 col-md-6">
+    <label asp-for="StudentVM.Parent" class="form-label"></label>
+    @Html.DropDownListFor(
+            model => model.StudentVM.Parent,
+            (IEnumerable<SelectListItem>)ViewBag.Parents,
+            "--No Selection--",
+            new { @class = "form-control" }
+            )
+    <span asp-validation-for="StudentVM.Parent" class="text-danger"></span>
 </div>
