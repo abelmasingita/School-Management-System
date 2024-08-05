@@ -38,7 +38,8 @@ public class UserManagementController : Controller
     model.StudentVM = new StudentViewModel();
     model.ParentVM = new ParentViewModel();
 
-    ViewBag.Roles = new SelectList(await db.Roles.ToListAsync(), "Id", "Name");
+    ViewBag.Roles = new SelectList(await db.Roles.ToListAsync(), "Name", "Name");
+    ViewBag.Schools = new SelectList(db.Schools, "Id", "SchoolName");
     return View(model);
   }
 
@@ -47,19 +48,19 @@ public class UserManagementController : Controller
   {
     ModelState.Remove("RegisterVM.Password");
     ModelState.Remove("RegisterVM.ConfirmPassword");
-    var role = await db.Roles.FindAsync(model.RegisterVM.Role);
 
-    if (role.Name == "Teacher")
+
+    if (model.RegisterVM.Role.ToLower() == "teacher")
     {
       ModelState.Remove("ParentVM");
       ModelState.Remove("StudentVM");
     }
-    else if (role.Name == "Student")
+    else if (model.RegisterVM.Role.ToLower() == "student")
     {
       ModelState.Remove("ParentVM");
       ModelState.Remove("TeacherVM");
     }
-    else if (role.Name == "Parent")
+    else if (model.RegisterVM.Role.ToLower() == "parent")
     {
       ModelState.Remove("StudentVM");
       ModelState.Remove("TeacherVM");
@@ -81,14 +82,15 @@ public class UserManagementController : Controller
           Gender = model.RegisterVM.Gender,
           DateOfBirth = model.RegisterVM.DateOfBirth,
           Address = model.RegisterVM.Address,
-          PhoneNumber = model.RegisterVM.Phone
+          PhoneNumber = model.RegisterVM.Phone,
+          SchoolId = int.Parse(model.RegisterVM.School)
         };
 
         var result = await userManager.CreateAsync(user, model.RegisterVM.Password);
         if (result.Succeeded)
         {
 
-          if (model.RegisterVM.Role == "teacher")
+          if (model.RegisterVM.Role.ToLower() == "teacher")
           {
             Teacher teacher = new Teacher()
             {
@@ -100,7 +102,7 @@ public class UserManagementController : Controller
 
 
           }
-          else if (model.RegisterVM.Role == "student")
+          else if (model.RegisterVM.Role.ToLower() == "student")
           {
 
             Student student = new Student()
@@ -115,7 +117,7 @@ public class UserManagementController : Controller
             db.SaveChanges();
 
           }
-          else if (model.RegisterVM.Role == "parent")
+          else if (model.RegisterVM.Role.ToLower() == "parent")
           {
             Parent parent = new Parent()
             {
@@ -143,7 +145,9 @@ public class UserManagementController : Controller
       }
     }
 
-    return View();
+    ViewBag.Roles = new SelectList(await db.Roles.ToListAsync(), "Name", "Name");
+    ViewBag.Schools = new SelectList(db.Schools, "Id", "SchoolName");
+    return View(model);
   }
 
   [HttpGet]
@@ -152,6 +156,9 @@ public class UserManagementController : Controller
     switch (role.ToLower())
     {
       case "teacher":
+        #region subjects
+        ViewBag.Subjects = new SelectList(db.Subjects, "Id", "SubjectName");
+        #endregion
         return PartialView("~/Views/Shared/_TeacherFields.cshtml", model);
       case "student":
         #region Class_Parents

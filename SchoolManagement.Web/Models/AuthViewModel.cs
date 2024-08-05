@@ -64,6 +64,9 @@ public class AuthViewModel
 
     [Required]
     public String Role { get; set; }
+
+    [DisplayName("School Name")]
+    public string School { get; set; }
   }
 
   public class TeacherViewModel
