@@ -22,10 +22,13 @@ namespace DataAccessLayer
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
-        public DbSet<Class> Classes { get; set; }
         public DbSet<Fee> Fees { get; set; }
         public DbSet<Grade> Grades { get; set; }
+        public DbSet<Marks> Marks { get; set; }
+        public DbSet<School> Schools { get; set; }
+        public DbSet<Models.Stream> Streams { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<TeacherSubject> TeacherSubjects { get; set; }
+        public DbSet<TeacherGrade> TeacherGrades { get; set; }
     }
 }

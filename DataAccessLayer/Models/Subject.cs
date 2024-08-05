@@ -11,9 +11,14 @@ namespace DataAccessLayer.Models
         [DisplayName("Subject Name")]
         public string SubjectName { get; set; }
 
+        [DisplayName("School Id")]
+        public int SchoolId { get; set; }
+        public School School { get; set; }
+
         //navigation properties
         public ICollection<Teacher> Teachers { get; set; }
-        public ICollection<Grade> Grades { get; set; }
+        public ICollection<Marks> Marks { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 
 }

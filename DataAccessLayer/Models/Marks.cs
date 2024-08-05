@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models
 {
-    [Table("Attendances")]
-    public class Attendance
+    [Table("Marks")]
+    public class Marks
     {
         [Key]
         public int Id { get; set; }
@@ -14,12 +14,11 @@ namespace DataAccessLayer.Models
         public int StudentId { get; set; }
         public Student Student { get; set; }
 
-        [DisplayName("Attendance Date")]
-        public DateTime Date { get; set; }
+        [DisplayName("Subject Id")]
+        public int SubjectId { get; set; }
+        public Subject Subject { get; set; }
 
-        [DisplayName("Attendance Status")]
-        public AttendanceType Status { get; set; }
+        [DisplayName("Grade Value")]
+        public string GradeValue { get; set; }
     }
-    public enum AttendanceType { Present, Absent}
-
 }

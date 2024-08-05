@@ -4,6 +4,7 @@ using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataLayer))]
-    partial class DataLayerModelSnapshot : ModelSnapshot
+    [Migration("20240804213600_initialMigration")]
+    partial class initialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,33 +158,7 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EstablishedYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PrincipalName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SchoolName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SchoolType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Website")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -474,25 +451,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "08ae1694-3004-4878-bfdb-a49672e97d46",
+                            Id = "0d5a70ce-42b8-45d4-ad3e-c237a6d41a88",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "6f1de3ac-5ea8-4994-9f70-a2ce4b8eb43d",
+                            Id = "0bdf91e0-6a82-46bc-963b-9f5c2b9b0db6",
                             Name = "Parent",
                             NormalizedName = "PARENT"
                         },
                         new
                         {
-                            Id = "e276ec25-9d85-4bb9-b834-f79ce2c303ff",
+                            Id = "447e1dcd-2d98-43b9-b571-54ebf3ff5993",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "878fd283-53cb-4e05-b216-508b854c98de",
+                            Id = "13af0735-4a15-4e0c-8003-3a48a94382fb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -795,7 +772,7 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("DataAccessLayer.Models.User", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.School", "School")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -901,8 +878,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Streams");
 
                     b.Navigation("Subjects");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Stream", b =>

@@ -1,0 +1,62 @@
+@model IEnumerable<DataAccessLayer.Models.School>
+
+
+<div class="card">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <h3 class="card-header fw-bold">Manage Schools</h3>
+        <a asp-controller="SchoolManagement" asp-action="SchoolAdd" class="btn btn-primary me-2">Add New School</a>
+    </div>
+    <div class="table-responsive text-nowrap p-4">
+        <table id="dataTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>School Name</th>
+                    <th>Principal Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Established Year</th>
+                    <th>Address</th>
+                    <th>Website</th>
+                    <th>School Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SchoolName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrincipalName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EstablishedYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Website)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SchoolType)
+                        </td>
+                        <td>
+                            <a asp-controller="SchoolManagement" asp-action="SchoolEdit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

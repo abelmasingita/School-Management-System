@@ -40,10 +40,6 @@
         </li>
       </ul>
     </li>
-@*     <!-- Apps & Pages -->
-    <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">Apps &amp; Pages</span>
-    </li> *@
     <!-- Pages -->
     <li class='menu-item@(currentPage.StartsWith("/UserManagement/Index") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -60,11 +56,45 @@
       <ul class="menu-sub">
         <li class='menu-item@(currentPage == "/SchoolManagement/Class" ? " active" : "")'>
             <a asp-controller="SchoolManagement" asp-action="Class" class="menu-link">
-                <div>Class Management</div>
+                <div>Role Management</div>
             </a>
         </li>
       </ul>
     </li>
+        <li class='menu-item@(currentPage.StartsWith("/SchoolManagement/School") ? " active open" : "")'>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div>School Management</div>
+            </a>
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/SchoolManagement/School" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="School" class="menu-link">
+                        <div>School Setup</div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/SchoolManagement/Stream" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Stream" class="menu-link">
+                        <div>Stream Setup</div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/SchoolManagement/Grade" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Grade" class="menu-link">
+                        <div>Grade Setup</div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/SchoolManagement/Subject" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Subject" class="menu-link">
+                        <div>Subject Setup</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
     <li class='menu-item@(currentPage.StartsWith("/Auth") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>

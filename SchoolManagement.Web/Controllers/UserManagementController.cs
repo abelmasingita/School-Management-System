@@ -108,7 +108,7 @@ public class UserManagementController : Controller
               UserId = user.Id,
               AdmissionDate = model.StudentVM.AdmissionDate,
               ParentId = int.Parse(model.StudentVM.Parent),
-              ClassId = int.Parse(model.StudentVM.Class),
+              GradeId = int.Parse(model.StudentVM.Class),
             };
 
             db.Students.Add(student);
@@ -155,7 +155,7 @@ public class UserManagementController : Controller
         return PartialView("~/Views/Shared/_TeacherFields.cshtml", model);
       case "student":
         #region Class_Parents
-        ViewBag.Classes = new SelectList(db.Classes, "Id", "ClassName");
+        ViewBag.Classes = new SelectList(db.Grades, "Id", "GradeName");
         ViewBag.Parents = db.Parents.Include(p => p.User).Select(p => new SelectListItem { Text = p.User.FirstName + " " + p.User.LastName, Value = p.Id.ToString() }).ToList();
         #endregion
         return PartialView("~/Views/Shared/_StudentFields.cshtml", model);

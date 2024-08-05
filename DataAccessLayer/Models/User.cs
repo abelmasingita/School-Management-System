@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace DataAccessLayer.Models
 
         [DisplayName("Active Status")]
         public ActiveStatus Active { get; set; }
+
+        [Display(Name = "School Id")]
+        public int SchoolId { get; set; }
+        public School School { get; set; }
 
         //mavigation properties
         public Student Student { get; set; }

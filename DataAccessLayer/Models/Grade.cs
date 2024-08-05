@@ -10,15 +10,19 @@ namespace DataAccessLayer.Models
         [Key]
         public int Id { get; set; }
 
-        [DisplayName("Student Id")]
-        public int StudentId { get; set; }
-        public Student Student { get; set; }
+        [DisplayName("Grade Name")]
+        public string GradeName { get; set; }
 
-        [DisplayName("Subject Id")]
-        public int SubjectId { get; set; }
-        public Subject Subject { get; set; }
+        [DisplayName("Stream Id")]
+        public int StreamId { get; set; }
+        public Stream Stream { get; set; }
 
-        [DisplayName("Grade Value")]
-        public string GradeValue { get; set; }
+        [DisplayName("School Id")]
+        public int SchoolId { get; set; }
+        public School School { get; set; }
+
+        //navigation properties
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
     }
 }

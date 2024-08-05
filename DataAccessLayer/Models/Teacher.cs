@@ -19,12 +19,12 @@ namespace DataAccessLayer.Models
         [DisplayName("User Id")]
         [Required]
         [ForeignKey("AspNetUsers")]
-        public string UserId { get; set; }  // Foreign Key to ApplicationUser
+        public string UserId { get; set; } 
         public User User { get; set; }
 
 
         //navigation properties
         public ICollection<Subject> Subject { get; set; }
-        public ICollection<Class> Classes { get; set; }
+        public ICollection<Grade> Grades { get; set; }
     }
 }

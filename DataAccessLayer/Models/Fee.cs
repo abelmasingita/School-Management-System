@@ -14,13 +14,15 @@ namespace DataAccessLayer.Models
         public int StudentId { get; set; }
         public Student Student { get; set; }
 
+
         [DisplayName("Amount")]
-        public decimal Amount { get; set; }
+        public float Amount { get; set; }
+
 
         [DisplayName("Fee Due Date")]
         public DateTime DueDate { get; set; }
 
         [DisplayName("Fee Payment Date")]
-        public DateTime? PaidDate { get; set; }
+        public DateTime PaidDate { get; set; }
     }
 }

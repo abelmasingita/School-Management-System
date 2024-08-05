@@ -1,81 +1,42 @@
-@{
-    ViewData["Title"] = "User Management  - Teacher";
-}
+@model IEnumerable<DataAccessLayer.Models.Grade>
 
-@section PageScripts {
-    <script src="~/js/pages-account-settings-account.js"></script>
-}
 
-@* ************** Content ************** *@
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">User Management /</span> Teacher
-</h4>
+<div class="card">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <h3 class="card-header fw-bold">Manage Grades</h3>
+        <a asp-controller="SchoolManagement" asp-action="GradeAdd" class="btn btn-primary me-2">Add New Class</a>
+    </div>
+    <div class="table-responsive text-nowrap p-4">
+        <table id="dataTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>Class Name</th>
+                    <th>Stream</th>
+                    <th>School</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
 
-<div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-pills flex-column flex-md-row mb-3">
-            <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Teacher</a></li>
-            <li class="nav-item"><a class="nav-link" href="Parent"><i class="bx bx-bell me-1"></i>Parent </a></li>
-            <li class="nav-item"><a class="nav-link" href="Student"><i class="bx bx-link-alt me-1"></i> Student</a></li>
-        </ul>
-        <div class="card mb-4">
-            <h5 class="card-header">Teacher Details</h5>
-            <!-- Account -->
-            <div class="card-body">
-                <form id="teacherAccount" method="POST" action="~/UserManagement/Teacher">
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input class="form-control" type="text" id="firstName" name="firstName" value="John" autofocus />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control" type="text" name="lastName" id="lastName" value="Doe" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control" type="text" id="email" name="email" value="john.doe&#64;example.com" placeholder="john.doe&#64;example.com" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phone">Phone Number</label>
-                            <div class="input-group input-group-merge">
-                                <span class="input-group-text">ZA (+27)</span>
-                                <input type="text" id="phone" name="phone" class="form-control" placeholder="74 226 1505" />
-                            </div>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="dateofbirth" class="form-label">Date of Birth</label>
-                            <input type="text" class="form-control" id="dateofbirth" name="dateofbirth" placeholder="Address" />
-                        </div>
-
-                        <div class="mb-3 col-md-6">
-                            <label for="gender" class="form-label">Gender</label>
-                            <select id="gender" class="select2 form-select">
-                                <option value="">Select Gender</option>
-                                <option value="ml">Male</option>
-                                <option value="fl">Female</option>
-                            </select>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="subject" class="form-label">Subject</label>
-                            <select id="subject" class="select2 form-select">
-                                <option value="">--Select Subject--</option>
-                                <option value="ml">Maths</option>
-                                <option value="fl">Physics</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /Account -->
-        </div>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GradeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stream.StreamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.School.SchoolName)
+                        </td>
+                        <td>
+                            <a asp-controller="SchoolManagement" asp-action="GradeEdit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+

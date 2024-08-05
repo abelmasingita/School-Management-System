@@ -1,16 +1,16 @@
-@model IEnumerable<DataAccessLayer.Models.Subject>
+@model IEnumerable<DataAccessLayer.Models.Stream>
 
 
 <div class="card">
     <div class="d-flex flex-row justify-content-between align-items-center">
-        <h3 class="card-header fw-bold">Manage Subjects</h3>
-        <a asp-controller="SchoolManagement" asp-action="SubjectAdd" class="btn btn-primary me-2">Add New Subject</a>
+        <h3 class="card-header fw-bold">Manage Stream</h3>
+        <a asp-controller="SchoolManagement" asp-action="StreamAdd" class="btn btn-primary me-2">Add New Stream</a>
     </div>
     <div class="table-responsive text-nowrap p-4">
         <table id="dataTable" class="table table-striped" style="width:100%">
             <thead>
                 <tr class="text-nowrap">
-                    <th>Subject Name</th>
+                    <th>Stream Name</th>
                     <th>School Name</th>
                     <th></th>
                 </tr>
@@ -21,13 +21,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SubjectName)
+                            @Html.DisplayFor(modelItem => item.StreamName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.School.SchoolName)
                         </td>
                         <td>
-                            <a asp-controller="SchoolManagement" asp-action="SubjectEdit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-controller="SchoolManagement" asp-action="StreamEdit" asp-route-id="@item.Id">Edit</a>
                         </td>
                     </tr>
                 }
