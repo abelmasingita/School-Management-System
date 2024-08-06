@@ -66,6 +66,12 @@ public class UserManagementController : Controller
       ModelState.Remove("TeacherVM");
       ModelState.Remove("ParentVM");
     }
+    else if (model.RegisterVM.Role.ToLower() == "admin")
+    {
+      ModelState.Remove("StudentVM");
+      ModelState.Remove("TeacherVM");
+      ModelState.Remove("ParentVM");
+    }
 
     if (ModelState.IsValid)
     {
@@ -100,7 +106,8 @@ public class UserManagementController : Controller
             db.Teachers.Add(teacher);
             db.SaveChanges();
 
-
+            //Add user to roles table
+            await userManager.AddToRoleAsync(user, "Teacher");
           }
           else if (model.RegisterVM.Role.ToLower() == "student")
           {
@@ -116,6 +123,8 @@ public class UserManagementController : Controller
             db.Students.Add(student);
             db.SaveChanges();
 
+            //Add user to roles table
+            await userManager.AddToRoleAsync(user, "Student");
           }
           else if (model.RegisterVM.Role.ToLower() == "parent")
           {
@@ -126,8 +135,15 @@ public class UserManagementController : Controller
 
             db.Parents.Add(parent);
             db.SaveChanges();
-          }
 
+            //Add user to roles table
+            await userManager.AddToRoleAsync(user, "Parent");
+          }
+          else if (model.RegisterVM.Role.ToLower() == "Admin")
+          {
+            //Add user to roles table
+            await userManager.AddToRoleAsync(user, "Admin");
+          }
 
           TempData["Success"] = true;
           TempData["Message"] = "User created successfully!";

@@ -13,7 +13,24 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataAccessLayer.DataLayer>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataAccessLayer")));
 
-builder.Services.AddIdentityCore<User>().AddRoles<IdentityRole>().AddTokenProvider<DataProtectorTokenProvider<User>>("SchoolMgt").AddEntityFrameworkStores<DataAccessLayer.DataLayer>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<DataAccessLayer.DataLayer>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+  // Default Password settings.
+  options.Password.RequireDigit = true;
+  options.Password.RequireLowercase = true;
+  options.Password.RequireNonAlphanumeric = true;
+  options.Password.RequireUppercase = true;
+  options.Password.RequiredLength = 6;
+  options.Password.RequiredUniqueChars = 1;
+
+  // Default SignIn settings.
+  options.SignIn.RequireConfirmedEmail = false;
+  options.SignIn.RequireConfirmedPhoneNumber = false;
+});
 
 var app = builder.Build();
 
@@ -35,6 +52,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=LoginBasic}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}");
 
 app.Run();

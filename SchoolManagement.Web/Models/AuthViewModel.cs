@@ -11,10 +11,12 @@ public class AuthViewModel
   {
     [Required]
     [EmailAddress]
+    [DisplayName("Email or Username")]
     public string Email { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
+    [DisplayName("Password")]
     public string Password { get; set; }
 
     [Display(Name = "Remember me?")]
