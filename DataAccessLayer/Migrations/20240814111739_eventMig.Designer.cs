@@ -4,6 +4,7 @@ using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataLayer))]
-    partial class DataLayerModelSnapshot : ModelSnapshot
+    [Migration("20240814111739_eventMig")]
+    partial class eventMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,9 +56,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<bool>("allDay")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("end")
                         .HasColumnType("datetime2");
@@ -500,25 +500,25 @@ namespace DataAccessLayer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "822059a4-097f-4ed9-bd22-f057c36d557c",
+                            Id = "833c6bee-6acc-4b63-9e5b-af14676dba6b",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "a72f7311-7913-4649-b0c9-20fd79b3bc03",
+                            Id = "e54b62d4-963d-4eec-941e-b7da4995c1b9",
                             Name = "Parent",
                             NormalizedName = "PARENT"
                         },
                         new
                         {
-                            Id = "0d923c28-2384-4591-ab59-a77a82020cb0",
+                            Id = "f3478d33-8721-46fd-94a8-be124f589164",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "b49b1070-0680-4e7d-8401-87c1a084c3e2",
+                            Id = "8e3bc13a-4e49-41f4-a04b-ef58c91af0da",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -1,0 +1,39 @@
+@model DataAccessLayer.Models.Event
+
+<div id='calendar'></div>
+
+<button id="canvasBtn" class="btn btn-primary d-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">toggle</button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Event</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr />
+  <div class="offcanvas-body">
+    <form method="post" action="EditEvent">
+      @Html.HiddenFor(Model=> Model.id)
+      <div class="container mb-6">
+          <label asp-for="title" class="form-label">Title</label>
+          <input asp-for="title" id="title" class="form-control" />
+       </div>
+      <div class="container mb-6">
+          <label asp-for="start"  class="form-label">Start Time</label>
+          <input asp-for="start" id="start" class="form-control" />
+      </div>
+      <div  class="container mb-6">
+          <label asp-for="end"  class="form-label">End Time</label>
+          <input asp-for="end" id="end" class="form-control"/>
+      </div>
+      <div  class="container mb-6">
+          <label asp-for="allDay"  class="form-label">All Day</label>
+          <input asp-for="allDay" id="allDay" class="form-check-input" />
+      </div>
+
+      <div  class="container mb-6">
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+      </div>
+     </form>
+  </div>
+</div>

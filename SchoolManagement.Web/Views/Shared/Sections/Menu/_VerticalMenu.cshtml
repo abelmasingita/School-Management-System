@@ -61,40 +61,46 @@
         </li>
       </ul>
     </li>
-        <li class='menu-item@(currentPage.StartsWith("/SchoolManagement/School") ? " active open" : "")'>
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>School Management</div>
-            </a>
-            <ul class="menu-sub">
-                <li class='menu-item@(currentPage == "/SchoolManagement/School" ? " active" : "")'>
-                    <a asp-controller="SchoolManagement" asp-action="School" class="menu-link">
-                        <div>School Setup</div>
-                    </a>
-                </li>
-            </ul>
-            <ul class="menu-sub">
-                <li class='menu-item@(currentPage == "/SchoolManagement/Stream" ? " active" : "")'>
-                    <a asp-controller="SchoolManagement" asp-action="Stream" class="menu-link">
-                        <div>Stream Setup</div>
-                    </a>
-                </li>
-            </ul>
-            <ul class="menu-sub">
-                <li class='menu-item@(currentPage == "/SchoolManagement/Grade" ? " active" : "")'>
-                    <a asp-controller="SchoolManagement" asp-action="Grade" class="menu-link">
-                        <div>Grade Setup</div>
-                    </a>
-                </li>
-            </ul>
-            <ul class="menu-sub">
-                <li class='menu-item@(currentPage == "/SchoolManagement/Subject" ? " active" : "")'>
-                    <a asp-controller="SchoolManagement" asp-action="Subject" class="menu-link">
-                        <div>Subject Setup</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+    <li class='menu-item@(currentPage.StartsWith("/SchoolManagement/School") ? " active open" : "")'>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div>School Management</div>
+        </a>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/SchoolManagement/School" ? " active" : "")'>
+                <a asp-controller="SchoolManagement" asp-action="School" class="menu-link">
+                    <div>School Setup</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/SchoolManagement/Stream" ? " active" : "")'>
+                <a asp-controller="SchoolManagement" asp-action="Stream" class="menu-link">
+                    <div>Stream Setup</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/SchoolManagement/Grade" ? " active" : "")'>
+                <a asp-controller="SchoolManagement" asp-action="Grade" class="menu-link">
+                    <div>Grade Setup</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/SchoolManagement/Subject" ? " active" : "")'>
+                <a asp-controller="SchoolManagement" asp-action="Subject" class="menu-link">
+                    <div>Subject Setup</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-item">
+        <a asp-controller="Schedule" asp-action="Index" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div>TimeTable</div>
+        </a>
+    </li>
   </ul>
 
 </aside>

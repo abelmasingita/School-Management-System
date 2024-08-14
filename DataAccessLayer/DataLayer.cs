@@ -30,5 +30,6 @@ namespace DataAccessLayer
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<TeacherSubject> TeacherSubjects { get; set; }
         public DbSet<TeacherGrade> TeacherGrades { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }
