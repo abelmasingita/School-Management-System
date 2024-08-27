@@ -64,13 +64,29 @@
         $(document).ready(function () {
             var tempError = '@TempData["TempError"]';
             var tempSuccess = '@TempData["TempSuccess"]';
+            var tempWarning = '@TempData["TempSuccess"]';
 
             if (tempError) {
-                toastr.error(tempError);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: tempError,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Retry',
+                    timer: 7000,
+                    timerProgressBar: true
+                });
             }
 
             if (tempSuccess) {
-                toastr.success(tempSuccess);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: tempSuccess,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    toast: true,
+                });
             }
         });
     </script>
