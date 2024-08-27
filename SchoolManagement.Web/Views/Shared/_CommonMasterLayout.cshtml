@@ -60,6 +60,20 @@
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            var tempError = '@TempData["TempError"]';
+            var tempSuccess = '@TempData["TempSuccess"]';
+
+            if (tempError) {
+                toastr.error(tempError);
+            }
+
+            if (tempSuccess) {
+                toastr.success(tempSuccess);
+            }
+        });
+    </script>
 </body>
 
 </html>

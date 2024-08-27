@@ -29,11 +29,12 @@ public class AuthController : Controller
 
       if (result.Succeeded)
       {
+        TempData["TempSuccess"] = "Valid Login credentials. Please try again.";
         return RedirectToAction("Admin", "Dashboards");
       }
       else
       {
-        //display the reason of login failure
+        TempData["TempError"] = "Invalid Login credentials. Please try again.";
       }
     }
 
