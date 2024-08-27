@@ -26,6 +26,7 @@
 
   @* ! Full version menu-items *@
   <ul class="menu-inner py-1">
+    <li class="mx-3 mt-2 menu-item">MAIN</li>
     <!-- Dashboards -->
     <li class='menu-item@(currentPage.EndsWith("/") || currentPage.StartsWith("/Dashboards/") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -33,28 +34,66 @@
         <div>Dashboard</div>
       </a>
       <ul class="menu-sub">
-        <li class='menu-item@(currentPage == "/" ? " active" : "")'>
-          <a asp-controller="Dashboards" asp-action="Index" class="menu-link">
+        <li class='menu-item@(currentPage == "/Dashboards/Admin" ? " active" : "")'>
+          <a asp-controller="Dashboards" asp-action="Admin" class="menu-link">
           <div>Admin Dashboard</div>
           </a>
         </li>
-        <li class='menu-item@(currentPage == "/" ? " active" : "")'>
-          <a asp-controller="Dashboards" asp-action="Index" class="menu-link">
+        <li class='menu-item@(currentPage == "/Dashboards/Teacher" ? " active" : "")'>
+          <a asp-controller="Dashboards" asp-action="Teacher" class="menu-link">
              <div>Teacher Dashboard</div>
           </a>
         </li>
-        <li class='menu-item@(currentPage == "/" ? " active" : "")'>
-          <a asp-controller="Dashboards" asp-action="Index" class="menu-link">
+        <li class='menu-item@(currentPage == "/Dashboards/Student" ? " active" : "")'>
+          <a asp-controller="Dashboards" asp-action="Student" class="menu-link">
               <div>Student Dashboard</div>
           </a>
         </li>
-        <li class='menu-item@(currentPage == "/" ? " active" : "")'>
-          <a asp-controller="Dashboards" asp-action="Index" class="menu-link">
+        <li class='menu-item@(currentPage == "/Dashboards/Parent" ? " active" : "")'>
+          <a asp-controller="Dashboards" asp-action="Parent" class="menu-link">
              <div>Parent Dashboard</div>
           </a>
         </li>
       </ul>
     </li>
+
+    <li class="mx-3 mt-2 menu-item">PEOPLE</li>
+    <!-- Students -->
+    <li class='menu-item@(currentPage.StartsWith("/Student/Index") ? " active open" : "")'>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div>Students</div>
+        </a>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/Student/Index" ? " active" : "")'>
+                <a asp-controller="Student" asp-action="Index" class="menu-link">
+                    <div>All Students</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/Student/StudentList" ? " active" : "")'>
+                <a asp-controller="Student" asp-action="StudentList" class="menu-link">
+                    <div>Student List</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/Student/Details" ? " active" : "")'>
+                <a asp-controller="Student" asp-action="Details" class="menu-link">
+                    <div>Student Details</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class='menu-item@(currentPage == "/Student/Promotion" ? " active" : "")'>
+                <a asp-controller="Student" asp-action="Promotion" class="menu-link">
+                    <div>Student Promotion</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <!-- Pages -->
     <li class='menu-item@(currentPage.StartsWith("/UserManagement/Index") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">

@@ -1,8 +1,854 @@
-@* @{
-    ViewData["Title"] = "Home Page";
-} *@
+@{
+    Layout = "_BlankLayout";
+    ViewData["Title"] = "Home";
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+    <div class="container">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+            <!-- Logo on the left -->
+            <a class="logo text-uppercase" href="index.php">
+                <img src="https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?auto=compress&cs=tinysrgb&w=600" alt="school management system South Africa" class="logo-dark" height="40">
+            </a>
+
+            <!-- Menu button for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Centered navigation links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#userbase" class="nav-link">Our Userbase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#pricing" class="nav-link">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <!-- Login button positioned below the Contact link on mobile -->
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a asp-controller="Auth" asp-action="Login" class="btn btn-secondary btn-rounded navbar-btn">Login to SchoolEase</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--Hero-->
+<section style="padding-top: 130px" id="home">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="hero-wrapper mb-4">
+                    <p class="font-16 text-uppercase">Discover <span class="text-primary"><b>School</b>Ease</span> Today</p>
+                    <h1 class="hero-title mb-4"><span class="text-primary">Comprehensive</span> School Management System</h1>
+                    <p>Everything you need, from administrative management, virtual classrooms to communication, <b>in one place.</b></p>
+                    <div class="mt-4">
+                        <!--<a href="#demo" class="btn btn-primary mt-2 mr-2">Explore the Demo</a>-->
+                        <a href="#features" class="btn btn-success mt-2 mr-2" style="background-color:#ffba0d;color:#fff;border-color:#ffba0d;box-shadow: 0 8px 14px rgba(255, 186, 13, 0.2);">View Features</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8">
+                <div class="home-img mt-5 mt-lg-0">
+                    <img src="website_assets/images/school-management-system-south-africa.png" alt="schoolbase school management system south africa" class="img-fluid mx-auto d-block">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Features-->
+<section class="section py-5" id="features">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase small-title">Features</h5>
+                    <h4 class="mb-3"><b>School</b>Ease is packed with features suitable for schools of any size.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-bottom:70px;padding-top:20px;margin-bottom:50px;border:1px solid #ededed">
+            <div class="col-lg-12">
+                <div>
+                    <h5 class="text-center">Multiple User Dashboard Levels</h5>
+                    <p class="mb-4 text-center">There are four separate dashboards depending on the user level.</p>
+
+                    <div class="row text-center">
+                        <div class="col-sm-6" style="padding:20px">
+                            <h5>Administrator Dashboard</h5>
+                            <p style="font-size:13px;">Complete Management of all aspects of the school</p>
+                            <p style="font-size:13px;">Generate Report cards</p>
+                            <p style="font-size:13px;">Student Management</p>
+                            <p style="font-size:13px;">Staff Management</p>
+                            <p style="font-size:13px;">School Setup and Management</p>
+                            <p style="font-size:13px;" class="text-success">and <b>SO MUCH</b> more.</p>
+                        </div>
+                        <div class="col-sm-6" style="padding:20px">
+                            <h5>Teacher Dashboard</h5>
+                            <p style="font-size:13px;">Access Student Records</p>
+                            <p style="font-size:13px;">Communicate with parents, students and administrators</p>
+                            <p style="font-size:13px;">View their schedules</p>
+                            <p style="font-size:13px;">Generate reports</p>
+                            <p style="font-size:13px;">Create E-learning content</p>
+                            <p style="font-size:13px;" class="text-success">and more.</p>
+                        </div>
+                        <div class="col-sm-6" style="padding:20px">
+                            <h5>Student Dashboard</h5>
+                            <p style="font-size:13px;">Access E-learning Content</p>
+                            <p style="font-size:13px;">View their academic and disciplinary records</p>
+                            <p style="font-size:13px;">Receive messages from their teachers and principal</p>
+                            <p style="font-size:13px;">Student Profiles</p>
+                            <p style="font-size:13px;">Access their timetable / schedule</p>
+                            <p style="font-size:13px;" class="text-success">and more.</p>
+                        </div>
+                        <div class="col-sm-6" style="padding:20px">
+                            <h5>Parent Dashboard</h5>
+                            <p style="font-size:13px;">Access their child's Academic and personal records</p>
+                            <p style="font-size:13px;">Communicate with teachers and administrators</p>
+                            <p style="font-size:13px;">View their child's schedules</p>
+                            <p style="font-size:13px;">View their child's disciplinary records</p>
+                            <p style="font-size:13px;">View their child's E-learning content</p>
+                            <p style="font-size:13px;" class="text-success">and more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>School Administration</h5>
+                    <p class="mb-4">Easily create Student, Staff and Guardian profiles for your school in just a few steps.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Student Profiles</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Staff Profiles</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Parent/Guardian Profiles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                                <img src="website_assets/images/features/school_management_system_schoolbase_12.jpg" alt="school administration management system for schools south africa" class="img-fluid mx-auto d-block">
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
+                                <img src="website_assets/images/features/school_management_system_schoolbase_disciplinary_record_2.jpg" alt="school disciplinary record management system for schools south africa" class="img-fluid mx-auto d-block">
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+                    <h5>Disciplinary Records</h5>
+                    <p class="mb-4">Keep track and record disciplinary incidents easily with <b>School</b>Ease. <b>School</b>Ease includes a Merit and Demerit system that is completely flexible.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Merits and Demerits</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Includes a default merit and demerit system that you can further customise.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Customised actions for disciplinary records, e.g. automatic notification to parents.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Select certain incidents to go on permanent disciplinary record.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Attendance</h5>
+                    <p class="mb-4">Easily keep track of student and staff attendance with our innovative QR code system.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Student attendance records that are part of their student records.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Staff attendance can be recorded easily by scanning a QR Code by the teachers from their own teacher dashboards.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Generate attendance reports for staff and students from the reports section in just a few clicks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_attendance_2.jpg" alt="school attendance system for schools in south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_school_events_2.jpg" alt="school event management system for schools south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+                    <h5>School Calendar / Events</h5>
+                    <p class="mb-4">Manage, keep track and publish school events to all users in just a few clicks.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Add school events to the calendar easily.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> School events are automatically synced across all user dashboards, i.e student, teacher and parent dashboards.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Timetables</h5>
+                    <p class="mb-4"><b>School</b>Ease includes a timetable management system for all students and staff.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Create class timetables and staff timetables from a single place.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Create a master timetable that syncs for all users. Students get their own customised timetables instantly on their own dashboards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_school_timetable_2.jpg" alt="school timetable software for schools in south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_report_cards_2.jpg" alt="school report card generation system for schools south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+                    <h5>Report Card Generation</h5>
+                    <p class="mb-4">Generate term-end and semester-end report cards directly with <b>School</b>Ease.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Includes electronic signatures directly on the report cards.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Principals and class teachers can directly add their signatures on their tablets, PC or mobile phone.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Reports cards instantly made available on students' and parents' dashboards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Integrated E-Learning</h5>
+                    <p class="mb-4">Remote and virtual learning made easy with <b>School</b>Ease.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Easy to use live video Virtual Classrooms.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Screen Sharing functionality.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Live Chat.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Teachers can upload study materials for students with a simple and easy to use interface.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Teachers can upload assignments for students and provide feedback/grades.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_virtual_classroom_elearning_2.jpg" alt="virtual classroom and elearning for south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_library_management_2.jpg" alt="school library management system for schools south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+
+                    <h5>Library Management</h5>
+                    <p class="mb-4">Manage your school library with <b>School</b>Ease.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> ISBN search makes it easy to add your books. Simply enter the book's ISBN number to get book information.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Generate QR Codes for your entire library.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Track borrowing/lending of books.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Scan QR codes to check books out to students and staff very easily.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Advanced Reporting</h5>
+                    <p class="mb-4">Generate class lists, demographic data and so much more with our advanced reporting features.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Generate class lists.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Demographic data.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Student performance reports.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Top performing staff.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Generate reports in PDF or export to CSV and Excel.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> .. and so much more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_reports.jpg" alt="school statistics and reporting system for schools in south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_student_card_generation_2.jpg" alt="student cards generation south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+                    <h5>Student Cards</h5>
+                    <p class="mb-4">Yes, you can also create student cards directly from <b>School</b>Ease!</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Simply select the grade or classroom and generate student ID cards ready for print.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Student cards have unique codes on them that can be used in conjuction with the library system or the integrated attendance systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Integrated Communication</h5>
+                    <p class="mb-4">Communicate with parents, students or staff directly from <b>School</b>Ease.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Send Mass Emails to parents, students or staff.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integrated bulk SMS messaging allows you to send bulk sms's to parents, staff or students directly from <b>School</b>Ease. </p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integrated messaging within <b>School</b>Ease. Send internal messages to all your users, i.e parents, students and staff. These messages can be accessed from their own user dashboards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_communicate_parents_students_2.jpg" alt="school communication system for schools south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 pt-5" style="border:1px solid #ededed;padding:20px;margin-bottom:50px">
+            <div class="col-lg-5 col-sm-8">
+                <div class="card border border-light shadow-none">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_document_storage_2.jpg" alt="school document storage south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto">
+                <div class="mt-4 mt-lg-0">
+                    <h5>Document Storage</h5>
+                    <p class="mb-4">Document Storage solutions integrated with <b>School</b>Ease</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Store your school's digital documents securely in the cloud.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 10GB of storage.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Accessible from any device.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" style="border:1px solid #ededed;padding:20px">
+            <div class="col-lg-5">
+                <div>
+                    <h5>Covid-19 Screening</h5>
+                    <p class="mb-4">Daily Covid-19 Screening for students and staff can be done directly from <b>School</b>Ease.</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Daily questionnaire capture.</p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Automatically flags potential positive cases. </p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p style="font-size:13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check icon-dual-success mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg> Screening reports.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div class="card border border-light shadow-none mt-5 mt-lg-0">
+                    <div class="card-body bg-light">
+                        <div class="box-shadow">
+                            <img src="website_assets/images/features/school_management_system_schoolbase_covid-19-screening.jpg" alt="covid-19 screening for schools south africa" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Services-->
+<section class="section bg-light py-5" id="services">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase small-title">User focused design</h5>
+                    <h4 class="mb-3">Easy to Use</h4>
+                    <p><b>School</b>Ease was developed to be super simple to use!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud icon-dual-primary"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Cloud based</h5>
+                    <p class="mb-0">Storage for your school data all in the cloud. No need to worry about data being lost due to theft, PC failure etc.</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock icon-dual-primary"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Secure</h5>
+                    <p class="mb-0">Features extensive security features. All traffic is encrypted using 256 bit encryption, ensuring your data is safe and secure.</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone icon-dual-primary"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Responsive Layout</h5>
+                    <p class="mb-0">PC, Laptop, Tablet or mobile phone, our responsive layout design adjusts to your device giving you the best user experience possible.</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase icon-dual-primary"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Flexible</h5>
+                    <p class="mb-0"><b>School</b>Ease is packed with so many features and is completely flexible. Use the features you want, according to your needs.</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-headphones icon-dual-primary"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Great Support</h5>
+                    <p class="mb-0">We are committed to a great user experience for all our clients. We offer email support, with a 24h turnaround time.</p>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="text-center p-4 mt-3">
+                    <div class="avatar-md mx-auto mb-4">
+                        <span class="avatar-title rounded-circle bg-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers icon-dual-primary"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </span>
+                    </div>
+                    <h5 class="font-18">Feature-rich</h5>
+                    <p class="mb-0"><b>School</b>Ease is feature-rich, allowing you to focus on the most important aspects of your school.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--UserBase-->
+<section class="section bg-primary py-5" id="userbase">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-12">
+                <div class="text-center text-white-50">
+                    <h4 class="text-white">Trusted by Schools across Southern Africa</h4>
+                    <p><b>School</b>Ease is the school management system of choice for over 20,000 users across South Africa.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="counter">
+            <div class="col-xl-3 col-sm-6">
+                <div class="text-center mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus icon-dual-success icons-lg"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                    <h2 class="counter-value text-white mt-4" data-count="12409">12409</h2>
+                    <p class="font-16 text-white-50">Students</p>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6">
+                <div class="text-center mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home icon-dual-success icons-lg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <h2 class="counter-value text-white mt-4" data-count="57">57</h2>
+                    <p class="font-16 text-white-50">Schools</p>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6">
+                <div class="text-center mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag icon-dual-success icons-lg"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                    <h2 class="counter-value text-white mt-4" data-count="6">6</h2>
+                    <p class="font-16 text-white-50">Countries</p>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="text-center mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus icon-dual-success icons-lg"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                    <h2 class="counter-value text-white mt-4" data-count="12077">12077</h2>
+                    <p class="font-16 text-white-50">Satisfied Users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Princing-->
+<section class="section bg-light py-5" id="pricing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase small-title">Pricing</h5>
+                    <h4 class="mb-3">Choose your Plan</h4>
+                    <p>All these features for a very affordable price. It is a no-brainer. Take control of your school management today.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pricing-plan card text-center">
+                    <div class="card-body p-4">
+                        <h5 class="mt-2 mb-5"><b>School</b>Ease Pro</h5>
+                        <h5 class="mt-2 mb-5">Monthly<br>&nbsp;</h5>
+                        <h1 class="mb-5"><sup><small>R</small></sup> 20<span class="font-16">/ Student / Month</span></h1>
+
+                        <div class="plan-features mt-5">
+                            <p>E-Learning</p>
+                            <p>Reporting</p>
+                            <p>Profile Management</p>
+                            <p>Communication Modules</p>
+                            <p>and all other features.</p>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-primary">Join now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pricing-plan card text-center">
+                    <div class="card-body p-4">
+                        <h5 class="mt-2 mb-5"><b>School</b>Ease Pro</h5>
+                        <h5 class="mt-2 mb-5">Annual<br> <span class="font-16 text-success">Save R40 per year per student</span></h5>
+                        <h1 class="mb-5"><sup><small>R</small></sup> 200<span class="font-16">/ Student / Year</span></h1>
+                        <h1 class="mb-5"></h1>
+                        <div class="plan-features mt-5">
+                            <p>E-Learning</p>
+                            <p>Reporting</p>
+                            <p>Profile Management</p>
+                            <p>Communication Modules</p>
+                            <p>and all other features.</p>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-primary">Join now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Contact-->
+<section class="section py-5" id="contact">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase small-title">Touch Base with Us.</h5>
+                    <h4 class="mb-3">We are easy to talk to :)</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Interested in signing up with <b>School</b>Ease? Get in touch with us to request a demo or clear up any questions you may have. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-lg-auto col-sm-8">
+                <div>
+                    <div class="form-group">
+                        <label for="inpschoolname">School Name</label>
+                        <input type="text" class="form-control" id="inpschoolname">
+                    </div>
+                    <div class="form-group">
+                        <label for="inpstudents">Number of Students</label>
+                        <select class="form-control" id="inpstudents">
+                            <option value="0">Please Select</option>
+                            <option value="less than 100">Less than 100</option>
+                            <option value="100 - 200">100 - 200</option>
+                            <option value="200-300">200-300</option>
+                            <option value="300-400">300-400</option>
+                            <option value="400+">400+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inpemail">Email</label>
+                        <input type="email" class="form-control" id="inpemail">
+                    </div>
+                    <div class="form-group">
+                        <label for="inpmessage">Message</label>
+                        <textarea class="form-control" id="inpmessage"></textarea>
+                    </div>
+                    <div id="divsuccess" style="background-color: green; color: rgb(255, 255, 255); padding: 15px; margin: 15px; display: none;" text-white"="">
+                        Thank you. We will get back to you as soon as possible.<p></p>
+                    </div>
+                    <button id="btnsubmit" class=" mt-2 btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 1090px;">
+        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="">
+            </div>
+        </div>
+    </div>
 </div>
+
+<!--Footer-->
+<footer class="footer bg-secondary py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div>
+                    <h5 class="mb-4">About <b>School</b>Ease</h5>
+                    <p><b>School</b>Ease is a comprehensive and advanced School Management &amp; communication system for schools in South Africa, Lesotho, Namibia and Swaziland.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1 col-sm-6">
+                <div>
+                    <h5 class="mb-4">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#userbase">Our Userbase</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div>
+                    <h5 class="mb-4">Contact</h5>
+
+                    <div>
+                        <div class="d-flex flex-row align-content-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin icon-dual-light icons-sm mt-1 mr-2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <div class="media-body">
+                                <p>116, Johannes Ramokhoase, Pretoria, South Africa</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-content-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail icon-dual-light icons-sm mt-1 mr-2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <div class="media-body">
+                                <p>info@schoolease.co.za</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-content-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone icon-dual-light icons-sm mt-1 mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <div class="media-body">
+                                <p>074-226-1505</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<section class="bg-primary py-5">
+    <div class="container">
+        <div class="row">
+            <div class="d-flex flex-row justify-content-between">
+                <div class="">
+                    <a href="#">
+                        <img src="~/img/avatars/1.png" alt="schoolease - school management system south africa" height="40">
+                    </a>
+                </div>
+                <div class="">
+                    <p class="copyright-desc text-white mb-0">2024 © <b>School</b>Ease.co.za.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -29,7 +29,7 @@ public class AuthController : Controller
 
       if (result.Succeeded)
       {
-        return RedirectToAction("Index", "Dashboards");
+        return RedirectToAction("Admin", "Dashboards");
       }
       else
       {

@@ -9,5 +9,8 @@ namespace AspnetCoreMvcFull.Controllers;
 [Authorize]
 public class DashboardsController : Controller
 {
-  public IActionResult Index() => View();
+  public IActionResult Admin() => View();
+  public IActionResult Teacher() => View();
+  public IActionResult Student() => View();
+  public IActionResult Parent() => View();
 }

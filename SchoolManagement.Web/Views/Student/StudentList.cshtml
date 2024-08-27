@@ -1,0 +1,55 @@
+@model IEnumerable<DataAccessLayer.Models.User>
+
+
+<div class="d-flex flex-row justify-content-between align-items-center">
+    <div>
+        <h3 class="card-header fw-bold my-1">Student List</h3>
+        <h4><a asp-controller="Dashboards" asp-action="Student">Dashboard</a> / Students / All Students</h4>
+    </div>
+    <a asp-controller="" asp-action="" class="btn btn-primary me-2">Add Student</a>
+</div>
+
+<div class="card">
+     <h3 class="card-header fw-bold">Students List</h3>
+    <div class="table-responsive text-nowrap p-4">
+        <table id="dataTable" class="table table-bordered table-striped cell-border" style="width:100%">
+            <thead>
+                <tr class="text-nowrap">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            <a asp-controller="UserManagement" asp-action="Details" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
