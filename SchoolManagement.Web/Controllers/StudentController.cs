@@ -25,9 +25,12 @@ public class StudentController : Controller
 
   public async Task<IActionResult> Index()
   {
-    List<User> users = await db.Users.ToListAsync();
+    var students = await db.Users
+        .Include(u => u.Student) 
+        .Where(u => u.Student != null)
+        .ToListAsync();
 
-    return View(users);
+    return View(students);
   }
 
   public async Task<IActionResult> Details()
@@ -44,8 +47,11 @@ public class StudentController : Controller
   }
   public async Task<IActionResult> StudentList()
   {
-    List<User> users = await db.Users.ToListAsync();
+    var students = await db.Users
+        .Include(u => u.Student)
+        .Where(u => u.Student != null)
+        .ToListAsync();
 
-    return View(users);
+    return View(students);
   }
 }
