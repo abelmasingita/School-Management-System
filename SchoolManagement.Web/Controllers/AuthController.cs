@@ -38,22 +38,22 @@ public class AuthController : Controller
 
         if (role.Contains("Admin"))
         {
-          TempData["TempSuccess"] = "Logged In";
+          //TempData["TempSuccess"] = "Logged In";
           return RedirectToAction("Admin", "Dashboards");
         }
         else if (role.Contains("Student"))
         {
-          TempData["TempSuccess"] = "Logged In";
+          //TempData["TempSuccess"] = "Logged In";
           return RedirectToAction("Student", "Dashboards");
         }
         else if (role.Contains("Teacher"))
         {
-          TempData["TempSuccess"] = "Logged In";
+          //TempData["TempSuccess"] = "Logged In";
           return RedirectToAction("Teacher", "Dashboards");
         }
         else if (role.Contains("Parent"))
         {
-          TempData["TempSuccess"] = "Logged In";
+          //TempData["TempSuccess"] = "Logged In";
           return RedirectToAction("Parent", "Dashboards");
         }
 

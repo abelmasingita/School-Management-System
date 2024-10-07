@@ -103,7 +103,7 @@ const webpackConfig = {
   externals: {
     jquery: 'jQuery',
     moment: 'moment',
-    // 'datatables.net': '$.fn.dataTable',
+    'datatables.net': '$.fn.dataTable',
     jsdom: 'jsdom',
     velocity: 'Velocity',
     hammer: 'Hammer',

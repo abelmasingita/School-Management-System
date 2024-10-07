@@ -59,33 +59,27 @@
 
     <li class="mx-3 mt-2 menu-item">PEOPLE</li>
     <!-- Students -->
-    <li class='menu-item@(currentPage.StartsWith("/Student/Index") ? " active open" : "")'>
+        <li class='menu-item@(currentPage.EndsWith("/") || currentPage.StartsWith("/Student/") ? " active open" : "")'>
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-dock-top"></i>
             <div>Students</div>
         </a>
         <ul class="menu-sub">
-            <li class='menu-item@(currentPage == "/Student/Index" ? " active" : "")'>
-                <a asp-controller="Student" asp-action="Index" class="menu-link">
+            <li class='menu-item@(currentPage == "/Student/Grid" ? " active" : "")'>
+                <a asp-controller="Student" asp-action="Grid" class="menu-link">
                     <div>All Students</div>
                 </a>
             </li>
-        </ul>
-        <ul class="menu-sub">
             <li class='menu-item@(currentPage == "/Student/StudentList" ? " active" : "")'>
                 <a asp-controller="Student" asp-action="StudentList" class="menu-link">
                     <div>Student List</div>
                 </a>
             </li>
-        </ul>
-        <ul class="menu-sub">
             <li class='menu-item@(currentPage == "/Student/Details" ? " active" : "")'>
                 <a asp-controller="Student" asp-action="Details" class="menu-link">
                     <div>Student Details</div>
                 </a>
             </li>
-        </ul>
-        <ul class="menu-sub">
             <li class='menu-item@(currentPage == "/Student/Promotion" ? " active" : "")'>
                 <a asp-controller="Student" asp-action="Promotion" class="menu-link">
                     <div>Student Promotion</div>
@@ -106,8 +100,6 @@
             <div>Users</div>
           </a>
         </li>
-      </ul>
-      <ul class="menu-sub">
         <li class='menu-item@(currentPage == "/UserManagement/Roles" ? " active" : "")'>
             <a asp-controller="SchoolManagement" asp-action="Class" class="menu-link">
                 <div>Roles & Permissions</div>
@@ -126,27 +118,21 @@
                     <div>School Setup</div>
                 </a>
             </li>
-        </ul>
-        <ul class="menu-sub">
-            <li class='menu-item@(currentPage == "/SchoolManagement/Stream" ? " active" : "")'>
-                <a asp-controller="SchoolManagement" asp-action="Stream" class="menu-link">
-                    <div>Stream Setup</div>
-                </a>
-            </li>
-        </ul>
-        <ul class="menu-sub">
-            <li class='menu-item@(currentPage == "/SchoolManagement/Grade" ? " active" : "")'>
-                <a asp-controller="SchoolManagement" asp-action="Grade" class="menu-link">
-                    <div>Grade Setup</div>
-                </a>
-            </li>
-        </ul>
-        <ul class="menu-sub">
-            <li class='menu-item@(currentPage == "/SchoolManagement/Subject" ? " active" : "")'>
-                <a asp-controller="SchoolManagement" asp-action="Subject" class="menu-link">
-                    <div>Subject Setup</div>
-                </a>
-            </li>
+                <li class='menu-item@(currentPage == "/SchoolManagement/Stream" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Stream" class="menu-link">
+                        <div>Stream Setup</div>
+                    </a>
+                </li>
+                <li class='menu-item@(currentPage == "/SchoolManagement/Grade" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Grade" class="menu-link">
+                        <div>Grade Setup</div>
+                    </a>
+                </li>
+                <li class='menu-item@(currentPage == "/SchoolManagement/Subject" ? " active" : "")'>
+                    <a asp-controller="SchoolManagement" asp-action="Subject" class="menu-link">
+                        <div>Subject Setup</div>
+                    </a>
+                </li>
         </ul>
     </li>
     <li class="menu-item">

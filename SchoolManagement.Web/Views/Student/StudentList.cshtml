@@ -10,11 +10,11 @@
 </div>
 
 <div class="card">
-     <h3 class="card-header fw-bold">Students List</h3>
+    <h4 class="card-header">Students List</h4>
     <div class="table-responsive text-nowrap p-4">
-        <table id="dataTable" class="table table-bordered table-striped cell-border" style="width:100%">
-            <thead>
-                <tr class="text-nowrap">
+        <table id="dataTable" class="table" style="width:100%">
+            <thead class="table-light thead-light">
+                <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -44,7 +44,17 @@
                             @Html.DisplayFor(modelItem => item.Active)
                         </td>
                         <td>
-                            <a asp-controller="UserManagement" asp-action="Details" asp-route-id="@item.Id">Edit</a>
+@*                             <a asp-controller="UserManagement" asp-action="Details" asp-route-id="@item.Id">Edit</a>
+ *@                            <div class="dropdown">
+                                <button class="btn p-0 d-flex align-items-center" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                    <a class="dropdown-item" href="javascript:void(0);">View Student</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Promote Student</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -52,4 +62,3 @@
         </table>
     </div>
 </div>
-

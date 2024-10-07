@@ -1,5 +1,6 @@
 using DataAccessLayer;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using static AspnetCoreMvcFull.Models.AuthViewModel;
 
 namespace AspnetCoreMvcFull.Controllers;
 
+[Authorize(Roles = "Admin,Student")]
 public class StudentController : Controller
 {
 
@@ -23,7 +25,7 @@ public class StudentController : Controller
     this.configuration = configuration;
   }
 
-  public async Task<IActionResult> Index()
+  public async Task<IActionResult> Grid()
   {
     var students = await db.Users
         .Include(u => u.Student) 
